@@ -1,22 +1,24 @@
 
 # AnimatedSprite
-[![Badge License]][License] [![Toybox Compatible](https://img.shields.io/badge/toybox.py-compatible-brightgreen?style=for-the-badge)](https://toyboxpy.io) [![Latest Version](https://img.shields.io/github/v/tag/Whitebrim/AnimatedSprite?style=for-the-badge)](https://github.com/Whitebrim/AnimatedSprite/tags)
+[![Badge License]][License]
 
 Animated sprites library for the **[PlayDate]**.
 
-<br>
+
+
+https://github.com/user-attachments/assets/25133e61-5a49-4dd2-8fa3-cfc153bf230c
+
+
+
+
 <br>
 <br>
 
-<div align = center>
-
-[![Button Installation]][Install]   
-[![Button Documentation]][Wiki]   
+[![Button Installation]][Install]<br><br>
+[![Button Documentation]][Wiki]<br><br>
 [![Button Performance]][Performance]
 
-</div>
 
-<br>
 <br>
 
 ## Features
@@ -66,7 +68,7 @@ sprite:playAnimation()
 
 <!----------------------------------------------------------------------------->
 
-[Telegram]: https://tg.brim.su
+[Telegram]: https://t.me/whitebrim
 [Playdate]: https://play.date/
 [Discord]: https://discordapp.com/users/241961053578199040
 [Wiki]: https://github.com/Whitebrim/AnimatedSprite/wiki
