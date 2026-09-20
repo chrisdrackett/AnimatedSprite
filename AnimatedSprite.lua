@@ -11,21 +11,28 @@
 import 'CoreLibs/object'
 import 'CoreLibs/sprites'
 local gfx <const> = playdate.graphics
+---@type fun(sprite: AnimatedSprite)
 local function emptyFunc()end
 
-class("AnimatedSprite").extends(gfx.sprite)
+---@class AnimatedSprite: _Sprite
+---@overload fun(imagetable: _ImageTable|string, states?: table, animate?: boolean): AnimatedSprite
+-- Playdate creates the global dynamically; the fallback preserves it when extends returns nil.
+AnimatedSprite = class("AnimatedSprite").extends(gfx.sprite) or AnimatedSprite
 
----@param imagetable table|string actual imagetable or path
+---@param imagetable _ImageTable|string actual imagetable or path
 ---@param states? table If provided, calls `setStates(states)` after initialisation
 ---@param animate? boolean If `True`, then the animation of default state will start after initialisation. Default: `False`
+---@return AnimatedSprite
 function AnimatedSprite.new(imagetable, states, animate)
 	return AnimatedSprite(imagetable, states, animate)
 end
 
+---@param imagetable _ImageTable|string actual imagetable or path
+---@param states? table Animation state configuration
+---@param animate? boolean Start the default animation immediately
 function AnimatedSprite:init(imagetable, states, animate)
 	AnimatedSprite.super.init(self)
 
-	---@type table
 	if (type(imagetable) == "string") then
 		imagetable = gfx.imagetable.new(imagetable)
 	end
@@ -330,6 +337,7 @@ end
 ---@param endFrame? integer Index of the last frame in the imagetable. Default: last frame (from states.default)
 ---@param params? table See examples
 ---@param animate? boolean If `True`, then the animation of this state will start immediately after. Default: `False`
+---@return { asDefault: fun() }
 function AnimatedSprite:addState(name, startFrame, endFrame, params, animate)
 	params = params or {}
 	params.firstFrameIndex = startFrame or 1
@@ -373,7 +381,7 @@ end
 ---Change current state to an existing state and start from selected frame  
 ---If new state is the same as current state, nothing will change
 ---@param name string New state name
----@param frameIndex integer Local frame index of this state. Indexing starts from 1. Default: `1`
+---@param frameIndex? integer Local frame index of this state. Indexing starts from 1. Default: `1`
 ---@param play? boolean If new animation should be played right away. Default: `True`
 function AnimatedSprite:changeStateAndSelectFrame(name, frameIndex, play)
 	if (name == self.currentState) then
